@@ -19,4 +19,12 @@ export class TimeKeeper {
   public async pageLoaded() {
     return expect(this.$timeKeeper).toBeVisible();
   }
+
+  public async createTimezoneRecord(label: string, location: string) {
+    await this.page.getByRole("button", { name: "Add timezone" }).click();
+    await this.page.getByPlaceholder("Label").click();
+    await this.page.getByPlaceholder("Label").fill(label);
+    await this.page.getByLabel("Location").selectOption(location);
+    await this.page.getByRole("button", { name: "Save" }).click();
+  }
 }
